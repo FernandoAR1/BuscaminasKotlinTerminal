@@ -25,6 +25,7 @@ class Buscaminas(private var size:Int,private var numminas:Int){
             println()
         }
     }
+
     fun ponerminas(){
         var minas = 0
         while (minas < numminas){
