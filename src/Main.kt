@@ -16,7 +16,7 @@ fun main(){
     val game =Buscaminas(size, numminas)
     game.creartablero()
     game.ponerminas()
-    game.vervistatablero()
+    println(game.vervistatablero())
     while (true){
         when(menu()){
             1->{
@@ -26,11 +26,11 @@ fun main(){
                 val columna = readln().toInt()-1
                 if (game.destapar(fila, columna)){
                     println("Has perdido")
-                    game.vervistatablero()
+                    println(game.vervistatablero())
                     break
                 }
                 else{
-                    game.vervistatablero()
+                    println(game.vervistatablero())
                 }
             }
             2->{
@@ -39,7 +39,7 @@ fun main(){
                 print("Introduce la columna: ")
                 val columna = readln().toInt()-1
                 game.ponerbandera(fila, columna)
-                game.vervistatablero()
+                println(game.vervistatablero())
             }
             3->{
                 print("Introduce la fila: ")
@@ -47,7 +47,7 @@ fun main(){
                 print("Introduce la columna: ")
                 val columna = readln().toInt()-1
                 game.quitarbandera(fila, columna)
-                game.vervistatablero()
+                println(game.vervistatablero())
             }
             4-> {
                 break

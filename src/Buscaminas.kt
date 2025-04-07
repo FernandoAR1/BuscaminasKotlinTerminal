@@ -1,4 +1,13 @@
+class MiException(mensaje:String):Exception(mensaje)
 class Buscaminas(private var size:Int,private var numminas:Int){
+    init {
+        if (size<=1){
+            throw MiException("tamaño del buscaminas no valido")
+        }
+        if ((numminas>(size*size))||numminas<=0){
+            throw MiException("numero de minas no valido")
+        }
+    }
     private var tablero = Array(size) { Array(size) { 0 } }
     private var vistatablero = Array(size) { Array(size) { false } }
     private var vistabanderas = Array(size) { Array(size) { false } }
@@ -9,21 +18,38 @@ class Buscaminas(private var size:Int,private var numminas:Int){
             }
         }
     }
-    fun vervistatablero(){
+    fun vervistatablero():String{
+        var tablerostring=StringBuilder()
         for (i in 0..size-1){
             for (j in 0..size-1){
                 if (vistatablero[i][j]){
-                    print("${tablero[i][j]} ")
+                    if (tablero[i][j]==9){
+                        tablerostring.append("* ")
+                    }
+                    else {
+                        tablerostring.append("${tablero[i][j]} ")
+                    }
                 }
                 else if (vistabanderas[i][j]){
-                    print("B ")
+                    tablerostring.append("B ")
                 }
                 else{
-                    print("X ")
+                    tablerostring.append("X ")
                 }
             }
-            println()
+            tablerostring.append("\n")
         }
+        return tablerostring.toString()
+    }
+
+    fun gettablero():Array<Array<Int>>{
+        return tablero
+    }
+    fun getvistatablero():Array<Array<Boolean>>{
+        return vistatablero
+    }
+    fun getvistabanderas():Array<Array<Boolean>>{
+        return vistabanderas
     }
 
     fun ponerminas(){
